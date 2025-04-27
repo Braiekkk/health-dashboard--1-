@@ -19,6 +19,11 @@ interface ProgressChartProps {
   onGoalChange: (goal: number) => void
 }
 
+const MONTHS = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+]
+
 export function ProgressChart({ data, initialGoal, onGoalChange }: ProgressChartProps) {
   const [dailyGoal, setDailyGoal] = useState(initialGoal)
   const [editingGoal, setEditingGoal] = useState(false)
@@ -191,7 +196,7 @@ function generateMonthlyComparison(data: StepData[]) {
   data.forEach((item) => {
     if (!item.fullDate) return
 
-    const monthName = item.fullDate.toLocaleString("default", { month: "short" })
+    const monthName = MONTHS[item.fullDate.getMonth()]
 
     if (!months[monthName]) {
       months[monthName] = { total: 0, count: 0 }

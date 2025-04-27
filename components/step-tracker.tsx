@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Calendar } from "@/components/ui/calendar"
+import Calendar from "@/components/calendar"
 import { cn } from "@/lib/utils"
 import { StepChart } from "@/components/step-chart"
 import { toast } from "@/components/ui/use-toast"
@@ -224,7 +224,6 @@ export function StepTracker() {
 
     setStepData(newStepData)
     setSteps("")
-    setDate(undefined)
     setIsOpen(false)
 
     // Show motivational quote
@@ -338,13 +337,11 @@ export function StepTracker() {
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
                       <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={(date) => {
+                        value={date}
+                        onChange={(date) => {
                           setDate(date)
                           setIsOpen(false)
                         }}
-                        initialFocus
                       />
                     </PopoverContent>
                   </Popover>
